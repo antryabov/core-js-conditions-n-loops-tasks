@@ -123,8 +123,19 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const roman = ['XL', 'X', 'IX', 'V', 'IV', 'I'];
+  const decimal = [40, 10, 9, 5, 4, 1];
+  let result = '';
+  let newA = num;
+  for (let i = 0; i < decimal.length; i += 1) {
+    if (decimal[i] <= newA) {
+      result += roman[i];
+      newA -= decimal[i];
+      i -= 1;
+    }
+  }
+  return result;
 }
 
 /**
@@ -142,8 +153,88 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  const stringNumbers = [
+    'minus',
+    'point',
+    'point',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'zero',
+  ];
+  const number = [
+    '-',
+    '.',
+    ',',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+  ];
+  const arrayNumber = numberStr;
+  for (let i = 0; i < arrayNumber.length; i += 1) {
+    switch (arrayNumber[i]) {
+      case number[0]:
+        result += ` ${stringNumbers[0]}`;
+        break;
+      case number[1]:
+        result += ` ${stringNumbers[1]}`;
+        break;
+      case number[2]:
+        result += ` ${stringNumbers[2]}`;
+        break;
+      case number[3]:
+        result += ` ${stringNumbers[3]}`;
+        break;
+      case number[4]:
+        result += ` ${stringNumbers[4]}`;
+        break;
+      case number[5]:
+        result += ` ${stringNumbers[5]}`;
+        break;
+      case number[6]:
+        result += ` ${stringNumbers[6]}`;
+        break;
+      case number[7]:
+        result += ` ${stringNumbers[7]}`;
+        break;
+      case number[8]:
+        result += ` ${stringNumbers[8]}`;
+        break;
+      case number[9]:
+        result += ` ${stringNumbers[9]}`;
+        break;
+      case number[10]:
+        result += ` ${stringNumbers[10]}`;
+        break;
+      case number[11]:
+        result += ` ${stringNumbers[11]}`;
+        break;
+      default:
+        result += ` ${stringNumbers[12]}`;
+        break;
+    }
+  }
+  let newResult = '';
+  for (let i = 1; i < result.length; i += 1) {
+    newResult += result[i];
+  }
+
+  return newResult;
 }
 
 /**
@@ -158,8 +249,12 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let result = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    result += str[i];
+  }
+  return result === str;
 }
 
 /**
@@ -176,8 +271,17 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let index = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      index = i;
+      break;
+    } else {
+      index = -1;
+    }
+  }
+  return index;
 }
 
 /**
@@ -195,8 +299,18 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let result = false;
+  const string = `${num}`;
+  for (let i = 0; i < string.length; i += 1) {
+    if (string[i] === `${digit}`) {
+      result = true;
+      break;
+    } else {
+      result = false;
+    }
+  }
+  return result;
 }
 
 /**
