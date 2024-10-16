@@ -326,18 +326,16 @@ function isContainNumber(num, digit) {
  */
 function getBalanceIndex(arr) {
   let index = -1;
-  let sumNumbers = 0;
+  let sumArray = 0;
   let sumLeft = 0;
   for (let i = 0; i < arr.length; i += 1) {
-    sumNumbers += arr[i];
+    sumArray += arr[i];
   }
 
   for (let j = 0; j < arr.length; j += 1) {
-    sumNumbers -= arr[j];
-    if (sumNumbers === sumLeft) {
-      index = j;
-    }
     sumLeft += arr[j];
+    if (sumArray === sumLeft) index = j;
+    sumArray -= arr[j];
   }
   return index;
 }
@@ -380,7 +378,7 @@ function getSpiralMatrix(size) {
 
   let startValue = 1;
 
-  while (startColumn <= endColumn && startRow <= endColumn) {
+  while (startColumn <= endColumn) {
     for (let i = startColumn; i <= endColumn; i += 1) {
       matrix[startRow][i] = startValue;
       startValue += 1;
