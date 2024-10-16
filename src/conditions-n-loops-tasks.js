@@ -71,15 +71,13 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
 function canQueenCaptureKing(queen, king) {
-  if (queen.x === king.x) {
-    return true;
-  }
-  if (queen.y === king.y) {
+  if (queen.y === king.y || queen.x === king.x) {
     return true;
   }
   if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) {
     return true;
   }
+
   return false;
 }
 
@@ -125,13 +123,13 @@ function isIsoscelesTriangle(a, b, c) {
  */
 function convertToRomanNumerals(num) {
   const roman = ['XL', 'X', 'IX', 'V', 'IV', 'I'];
-  const decimal = [40, 10, 9, 5, 4, 1];
+  const number = [40, 10, 9, 5, 4, 1];
   let result = '';
   let newA = num;
-  for (let i = 0; i < decimal.length; i += 1) {
-    if (decimal[i] <= newA) {
+  for (let i = 0; i < number.length; i += 1) {
+    if (number[i] <= newA) {
       result += roman[i];
-      newA -= decimal[i];
+      newA -= number[i];
       i -= 1;
     }
   }
@@ -326,8 +324,22 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let index = -1;
+  let sumNumbers = 0;
+  let sumLeft = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    sumNumbers += arr[i];
+  }
+
+  for (let j = 0; j < arr.length; j += 1) {
+    sumNumbers -= arr[j];
+    if (sumNumbers === sumLeft) {
+      index = j;
+    }
+    sumLeft += arr[j];
+  }
+  return index;
 }
 
 /**
@@ -351,8 +363,49 @@ function getBalanceIndex(/* arr */) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const matrix = [];
+
+  for (let i = 0; i < size; i += 1) {
+    matrix[i] = [];
+    for (let j = 0; j < size; j += 1) {
+      matrix[i][j] = null;
+    }
+  }
+
+  let startColumn = 0;
+  let startRow = 0;
+  let endColumn = matrix[0].length - 1;
+  let endRow = matrix.length - 1;
+
+  let startValue = 1;
+
+  while (startColumn <= endColumn && startRow <= endColumn) {
+    for (let i = startColumn; i <= endColumn; i += 1) {
+      matrix[startRow][i] = startValue;
+      startValue += 1;
+    }
+    startRow += 1;
+
+    for (let j = startRow; j <= endRow; j += 1) {
+      matrix[j][endColumn] = startValue;
+      startValue += 1;
+    }
+    endColumn -= 1;
+
+    for (let e = endColumn; e >= startColumn; e -= 1) {
+      matrix[endRow][e] = startValue;
+      startValue += 1;
+    }
+    endRow -= 1;
+
+    for (let g = endRow; g >= startRow; g -= 1) {
+      matrix[g][startColumn] = startValue;
+      startValue += 1;
+    }
+    startColumn += 1;
+  }
+  return matrix;
 }
 
 /**
