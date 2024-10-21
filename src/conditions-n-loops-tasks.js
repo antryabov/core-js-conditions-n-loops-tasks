@@ -101,8 +101,12 @@ function canQueenCaptureKing(queen, king) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if ((a === b || a === c || b === c) && a + b > c && a + c > b && b + c > a) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -119,8 +123,19 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romans = ['XL', 'X', 'IX', 'V', 'IV', 'I'];
+  const numbers = [40, 10, 9, 5, 4, 1];
+  let result = '';
+  let newNum = num;
+  for (let i = 0; i < numbers.length; i += 1) {
+    if (numbers[i] <= newNum) {
+      result += romans[i];
+      newNum -= numbers[i];
+      i -= 1;
+    }
+  }
+  return result;
 }
 
 /**
@@ -138,8 +153,88 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let answer = '';
+  const stringNumbers = [
+    'minus',
+    'point',
+    'point',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'zero',
+  ];
+  const number = [
+    '-',
+    '.',
+    ',',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+  ];
+  const arrayNumber = numberStr;
+  for (let i = 0; i < arrayNumber.length; i += 1) {
+    switch (arrayNumber[i]) {
+      case number[0]:
+        answer += ` ${stringNumbers[0]}`;
+        break;
+      case number[1]:
+        answer += ` ${stringNumbers[1]}`;
+        break;
+      case number[2]:
+        answer += ` ${stringNumbers[2]}`;
+        break;
+      case number[3]:
+        answer += ` ${stringNumbers[3]}`;
+        break;
+      case number[4]:
+        answer += ` ${stringNumbers[4]}`;
+        break;
+      case number[5]:
+        answer += ` ${stringNumbers[5]}`;
+        break;
+      case number[6]:
+        answer += ` ${stringNumbers[6]}`;
+        break;
+      case number[7]:
+        answer += ` ${stringNumbers[7]}`;
+        break;
+      case number[8]:
+        answer += ` ${stringNumbers[8]}`;
+        break;
+      case number[9]:
+        answer += ` ${stringNumbers[9]}`;
+        break;
+      case number[10]:
+        answer += ` ${stringNumbers[10]}`;
+        break;
+      case number[11]:
+        answer += ` ${stringNumbers[11]}`;
+        break;
+      default:
+        answer += ` ${stringNumbers[12]}`;
+        break;
+    }
+  }
+  let newAnswer = '';
+  for (let i = 1; i < answer.length; i += 1) {
+    newAnswer += answer[i];
+  }
+
+  return newAnswer;
 }
 
 /**
