@@ -448,12 +448,12 @@ function rotateMatrix(/* matrix */) {
  */
 function sortByAsc(arr) {
   const sortedArray = arr;
-  for (let i = 0; i < sortedArray.length - 1; i += 1) {
-    for (let j = 0; j < sortedArray.length - 1 - i; j += 1) {
+  for (let i = 0; i < sortedArray.length; i += 1) {
+    for (let j = 0; j < sortedArray.length; j += 1) {
       if (sortedArray[j + 1] < sortedArray[j]) {
-        const sort = arr[j + 1];
-        sortedArray[j + 1] = sortedArray[j];
-        sortedArray[j] = sort;
+        const temporal = arr[j];
+        sortedArray[j] = sortedArray[j + 1];
+        sortedArray[j + 1] = temporal;
       }
     }
   }
